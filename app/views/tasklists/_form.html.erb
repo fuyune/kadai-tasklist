@@ -1,6 +1,6 @@
 <%= form_for(tasklist) do |f| %>
 
-  <% if tasklist.error_errors.any? %>
+  <% if tasklist.errors.any? %>
     <div id="error_explanation">
       <ul>
         <% tasklist.errors.full_messages.each do |tasklist| %>
@@ -9,6 +9,9 @@
       </ul>
     </div>
   <% end %>
+  
+  <%= f.label :status, 'タイトル' %>
+  <%= f.text_field :status %>
 
   <%= f.label :content, 'タスク' %>
   <%= f.text_field :content %>
