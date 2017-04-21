@@ -10,11 +10,47 @@
     </div>
   <% end %>
   
+  
+  <div class="row">
+  <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+  
+    
+<%= form_for(message) do |f| %>
+
+      
+<% if message.errors.any? %>
+
+        <div id="error_explanation">
+          <ul>
+            
+<% message.errors.full_messages.each do |message| %>
+
+              <li>
+<%= message %>
+</li>
+            
+<% end %>
+
+          </ul>
+        </div>
+      
+<% end %>
+  
+  
+  <div class="form-group">
+  
   <%= f.label :status, 'ステータス' %>
-  <%= f.text_field :status %>
+  <%= f.text_field :status, class: 'form-control' %>
+  </div>
+
+<div class="form-group">
 
   <%= f.label :content, 'タスク' %>
-  <%= f.text_field :content %>
+  <%= f.text_field :content, class: 'form-control' %>
 
-  <%= f.submit '管理' %>
+</div>
+
+  <%= f.submit '管理', class: 'btn btn-primary' %>
 <% end %>
+</div>
+</div>
