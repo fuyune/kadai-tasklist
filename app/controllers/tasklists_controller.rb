@@ -1,14 +1,14 @@
 class TasklistsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user, only: [:destroy]
-
+  
   def create
     @tasklist = current_user.tasklists.build(tasklist_params)
     if @tasklist.save
       flash[:success] = 'タスクを管理しました。'
       redirect_to root_url
     else
-      @microposts = current_user.tasklists.order('created_at DESC').page(params[:page])
+      @tasklists = current_user.tasklists.order('created_at DESC').page(params[:page])
       flash.now[:danger] = 'タスクの管理に失敗しました。'
       render 'toppages/index'
     end
@@ -23,7 +23,7 @@ class TasklistsController < ApplicationController
   private
 
   def tasklist_params
-    params.require(:tasklist).permit(:content)
+    params.require(:tasklist).permit(:content, :status)
   end
   
   def correct_user
