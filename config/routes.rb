@@ -1,21 +1,13 @@
+
+
 Rails.application.routes.draw do
   
-  get 'toppages/index'
+  get 'sessions/new'
 
-  get 'users/index'
+  get 'sessions/create'
 
-  get 'users/show'
+  get 'sessions/destroy'
 
-  get 'users/new'
-
-  get 'users/create'
-
-  root to: 'tasklists#index'
-
-  resources :tasklists
-end
-
-Rails.application.routes.draw do
   get 'toppages/index'
 
   get 'users/index'
@@ -27,7 +19,12 @@ Rails.application.routes.draw do
   get 'users/create'
 
   root to: 'toppages#index'
+  
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 
   get 'signup', to: 'users#new'
   resources :users, only: [:index, :show, :new, :create]
+  resources :tasklists, only: [:create, :destroy]
 end
